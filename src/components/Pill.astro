@@ -1,0 +1,39 @@
+---
+import { LEVELS } from '../constants'
+
+interface Props {
+  level?: number
+  as?: 'div' | 'span' | 'h2' | 'h3' | 'p'
+}
+
+const { level = LEVELS.EASY, as: Tag = 'div' } = Astro.props
+
+const LITERALS: Record<number, string> = {
+  [LEVELS.EASY]: 'Principiante',
+  [LEVELS.MEDIUM]: 'Intermedio',
+  [LEVELS.HARD]: 'Experto',
+  [LEVELS.ERRORS]: 'Errores típicos',
+}
+
+const COLORS: Record<number, string> = {
+  [LEVELS.EASY]:
+    'border-emerald-500/40 bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300',
+  [LEVELS.MEDIUM]:
+    'border-amber-500/40 bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300',
+  [LEVELS.HARD]:
+    'border-violet-500/40 bg-violet-50 text-violet-700 dark:bg-violet-500/15 dark:text-violet-300',
+  [LEVELS.ERRORS]:
+    'border-red-500/40 bg-red-50 text-red-700 dark:bg-red-500/15 dark:text-red-300',
+}
+
+const literal = LITERALS[level] ?? LITERALS[LEVELS.EASY]
+const color = COLORS[level] ?? COLORS[LEVELS.EASY]
+const isHeading = Tag === 'h2' || Tag === 'h3'
+---
+
+<Tag class:list={[isHeading && 'm-0 text-inherit font-inherit']}>
+  <span class:list={[color, 'pill-tag']}>
+    <span class="sr-only">Nivel: </span>
+    {literal}
+  </span>
+</Tag>

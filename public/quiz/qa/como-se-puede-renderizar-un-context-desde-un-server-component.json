@@ -1,0 +1,150 @@
+[
+  {
+    "id": "como-se-puede-renderizar-un-context-desde-un-server-component-q-1",
+    "question_id": "como-se-puede-renderizar-un-context-desde-un-server-component",
+    "question": "¿Puede un Server Component crear un Context con createContext?",
+    "alternatives": [
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-1",
+        "text": "No: createContext es de cliente. El servidor solo puede renderizar un Context importado de un módulo 'use client'.",
+        "is_correct": true
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-2",
+        "text": "Sí, y es la forma recomendada de compartir estado entre peticiones.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-3",
+        "text": "Sí, pero solo con React.createContext en el layout raíz.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-4",
+        "text": "No, y tampoco puede renderizarlo nunca.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-5",
+        "text": "Solo si usa useState en el servidor.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-6",
+        "text": "Sí, si el Context no tiene value.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "como-se-puede-renderizar-un-context-desde-un-server-component-q-2",
+    "question_id": "como-se-puede-renderizar-un-context-desde-un-server-component",
+    "question": "¿Qué cambió en React 19.3 respecto a renderizar Context desde el servidor?",
+    "alternatives": [
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-7",
+        "text": "Ya no hace falta un Provider envoltorio: puedes renderizar <UserContext value={...}> directo.",
+        "is_correct": true
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-8",
+        "text": "Context se ha eliminado en favor de props.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-9",
+        "text": "Hay que usar siempre Redux en el servidor.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-10",
+        "text": "El servidor puede llamar a useContext.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-11",
+        "text": "createContext ahora es síncrono en Node.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-12",
+        "text": "Solo funciona con Context.Consumer.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "como-se-puede-renderizar-un-context-desde-un-server-component-q-3",
+    "question_id": "como-se-puede-renderizar-un-context-desde-un-server-component",
+    "question": "¿De dónde debe importar el Server Component el Context?",
+    "alternatives": [
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-13",
+        "text": "De un módulo marcado con 'use client' que exporta el Context.",
+        "is_correct": true
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-14",
+        "text": "De react-dom/server.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-15",
+        "text": "De un archivo .json.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-16",
+        "text": "No se importa: se crea inline en el Server Component.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-17",
+        "text": "De window.React.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-18",
+        "text": "De un Worker.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "como-se-puede-renderizar-un-context-desde-un-server-component-q-4",
+    "question_id": "como-se-puede-renderizar-un-context-desde-un-server-component",
+    "question": "¿Para qué es especialmente útil este patrón?",
+    "alternatives": [
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-19",
+        "text": "Pasar datos del servidor al árbol de cliente sin un Provider que solo reenvía props.",
+        "is_correct": true
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-20",
+        "text": "Mutar el Context desde varios Server Components a la vez.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-21",
+        "text": "Sustituir a las Server Actions.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-22",
+        "text": "Evitar hidratar la página.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-23",
+        "text": "Compartir estado mutable entre peticiones HTTP.",
+        "is_correct": false
+      },
+      {
+        "id": "como-se-puede-renderizar-un-context-desde-un-server-component-a-24",
+        "text": "Crear animaciones ViewTransition.",
+        "is_correct": false
+      }
+    ]
+  }
+]

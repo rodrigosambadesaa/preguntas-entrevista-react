@@ -1,0 +1,150 @@
+[
+  {
+    "id": "que-hace-la-api-browser-de-react-dom-q-1",
+    "question_id": "que-hace-la-api-browser-de-react-dom",
+    "question": "¿Qué hace use(browser()) en el servidor?",
+    "alternatives": [
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-1",
+        "text": "Suspende y muestra el fallback del Suspense más cercano.",
+        "is_correct": true
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-2",
+        "text": "Lanza un error y tumba toda la página.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-3",
+        "text": "Renderiza el componente con window mockeado.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-4",
+        "text": "Ejecuta el componente dos veces, como StrictMode.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-5",
+        "text": "Lo convierte en un Server Component.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-6",
+        "text": "Ignora el componente y no pinta nada.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-hace-la-api-browser-de-react-dom-q-2",
+    "question_id": "que-hace-la-api-browser-de-react-dom",
+    "question": "¿Qué ocurre con use(browser()) en el cliente tras hidratar?",
+    "alternatives": [
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-7",
+        "text": "No suspende: el componente se renderiza con normalidad.",
+        "is_correct": true
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-8",
+        "text": "Sigue suspendiendo para siempre.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-9",
+        "text": "Obliga a recargar la página.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-10",
+        "text": "Desmonta el árbol de React.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-11",
+        "text": "Activa flushSync.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-12",
+        "text": "Sustituye hydrateRoot por createRoot.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-hace-la-api-browser-de-react-dom-q-3",
+    "question_id": "que-hace-la-api-browser-de-react-dom",
+    "question": "¿Cuándo conviene usar browser()?",
+    "alternatives": [
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-13",
+        "text": "Cuando el HTML del servidor no puede coincidir: localStorage, zona horaria, APIs solo de navegador.",
+        "is_correct": true
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-14",
+        "text": "En todos los componentes, por defecto.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-15",
+        "text": "Solo para animar listas.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-16",
+        "text": "Para crear Context.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-17",
+        "text": "Como reemplazo de useState.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-18",
+        "text": "Únicamente en tests.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-hace-la-api-browser-de-react-dom-q-4",
+    "question_id": "que-hace-la-api-browser-de-react-dom",
+    "question": "¿Se puede llamar use(browser()) de forma condicional?",
+    "alternatives": [
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-19",
+        "text": "Sí: use admite llamadas condicionales, por ejemplo si no hay initialData.",
+        "is_correct": true
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-20",
+        "text": "No: rompería las reglas de los hooks.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-21",
+        "text": "Solo dentro de un class component.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-22",
+        "text": "Solo si está envuelto en memo.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-23",
+        "text": "No: hay que usarlo siempre en el top-level.",
+        "is_correct": false
+      },
+      {
+        "id": "que-hace-la-api-browser-de-react-dom-a-24",
+        "text": "Solo en React Native.",
+        "is_correct": false
+      }
+    ]
+  }
+]

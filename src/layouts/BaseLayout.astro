@@ -1,0 +1,156 @@
+---
+import '../styles/global.css'
+import geistLatinWoff2 from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url'
+import geistMonoLatinWoff2 from '@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import BuyBook from '../components/BuyBook.astro'
+import Seo from '../components/Seo.astro'
+import { DEFAULT_DESCRIPTION } from '../constants'
+
+interface Props {
+  title?: string
+  description?: string
+  canonical?: string
+  type?: 'website' | 'article'
+  noindex?: boolean
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[]
+}
+
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  canonical = '/',
+  type = 'website',
+  noindex = false,
+  jsonLd,
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8" />
+    {/*
+      Theme bootstrap MUST be the first executable content in <head>.
+      Si se difiere, se ve un flash en modo claro antes de aplicar el tema.
+    */}
+    <script is:inline>
+      ;(function () {
+        var root = document.documentElement
+        var stored = null
+        try {
+          stored = localStorage.getItem('theme')
+        } catch (e) {}
+        var prefersDark = false
+        try {
+          prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        } catch (e) {}
+        var dark = stored === 'dark' || (stored !== 'light' && prefersDark)
+        root.classList.toggle('dark', dark)
+        root.dataset.theme = dark ? 'dark' : 'light'
+        root.style.colorScheme = dark ? 'dark' : 'light'
+        root.style.setProperty('--page-bg', dark ? '#0f0f12' : '#ffffff')
+        root.style.setProperty('--page-fg', dark ? '#ededed' : '#171717')
+      })()
+    </script>
+    <style is:inline>
+      /* Critical theme colors — apply before the main CSS bundle loads */
+      html {
+        background-color: var(--page-bg, #ffffff);
+        color-scheme: light;
+      }
+      html[data-theme='dark'],
+      html.dark {
+        background-color: var(--page-bg, #0f0f12);
+        color-scheme: dark;
+      }
+      html,
+      body {
+        min-height: 100%;
+        background-color: var(--page-bg, #ffffff);
+        color: var(--page-fg, #171717);
+      }
+      /* Hide unthemed paint if the script is delayed; removed once data-theme is set */
+      html:not([data-theme]) {
+        visibility: hidden;
+      }
+      html[data-theme] {
+        visibility: visible;
+      }
+    </style>
+    <noscript>
+      <style>
+        html {
+          visibility: visible !important;
+        }
+      </style>
+    </noscript>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="preload"
+      href={geistLatinWoff2}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={geistMonoLatinWoff2}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    {/*
+      El libro flotante (BuyBook) está en `position: fixed` y se renderiza en
+      todas las páginas, así que siempre se descarga. Adelantamos la petición al
+      parseo del <head> en vez de esperar al <body>.
+      `type` hace que los navegadores sin AVIF salten este preload y usen el
+      webp del <picture>; `fetchpriority=low` evita competir con el LCP.
+    */}
+    <link
+      rel="preload"
+      as="image"
+      href="/book.avif"
+      type="image/avif"
+      fetchpriority="low"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0f12" media="(prefers-color-scheme: dark)" />
+    <Seo
+      title={title}
+      description={description}
+      canonical={canonical}
+      type={type}
+      noindex={noindex}
+      jsonLd={jsonLd}
+    />
+    <slot name="head" />
+  </head>
+  <body class="app-shell overscroll-none">
+    <div class="relative flex min-h-screen flex-col overflow-x-clip">
+      <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+      <a href="#search-input" class="skip-link skip-link-search">Saltar al buscador</a>
+      <Header />
+      <main
+        id="main-content"
+        tabindex="-1"
+        class="relative z-10 mx-auto block w-full max-w-6xl flex-1 px-5 pb-28 pt-2 md:px-8 md:pb-32"
+      >
+        <slot />
+      </main>
+      <Footer />
+      <BuyBook />
+    </div>
+    <div
+      id="a11y-status"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+    </div>
+  </body>
+</html>

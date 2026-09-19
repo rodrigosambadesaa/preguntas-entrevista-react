@@ -1,0 +1,150 @@
+[
+  {
+    "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-q-1",
+    "question_id": "que-son-las-fragment-refs-y-que-problemas-resuelven",
+    "question": "¿Qué obtienes al pasar una ref a un Fragment en React 19.3?",
+    "alternatives": [
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-1",
+        "text": "Un FragmentInstance que trata los nodos DOM hijos como grupo.",
+        "is_correct": true
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-2",
+        "text": "El primer hijo HTML únicamente.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-3",
+        "text": "Un div wrapper creado por React.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-4",
+        "text": "Un error: Fragment no acepta ref.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-5",
+        "text": "La misma API que useImperativeHandle.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-6",
+        "text": "Un portal al document.body.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-q-2",
+    "question_id": "que-son-las-fragment-refs-y-que-problemas-resuelven",
+    "question": "¿Qué problemas evitan las Fragment Refs?",
+    "alternatives": [
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-7",
+        "text": "Tener que envolver hermanos en un div o modificar un componente que no reenvía ref.",
+        "is_correct": true
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-8",
+        "text": "Los re-renders por Context.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-9",
+        "text": "Las reglas de los hooks.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-10",
+        "text": "El mismatch de hidratación.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-11",
+        "text": "Tener que usar keys en listas.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-12",
+        "text": "El XSS por innerHTML.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-q-3",
+    "question_id": "que-son-las-fragment-refs-y-que-problemas-resuelven",
+    "question": "¿Qué método del FragmentInstance conecta un IntersectionObserver?",
+    "alternatives": [
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-13",
+        "text": "observeUsing / unobserveUsing.",
+        "is_correct": true
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-14",
+        "text": "attachObserver.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-15",
+        "text": "useInView.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-16",
+        "text": "subscribe.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-17",
+        "text": "watchChildren.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-18",
+        "text": "createPortal.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-q-4",
+    "question_id": "que-son-las-fragment-refs-y-que-problemas-resuelven",
+    "question": "¿Las Fragment Refs cambian la estructura del DOM?",
+    "alternatives": [
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-19",
+        "text": "No: operan sobre los hijos sin añadir un nodo padre extra.",
+        "is_correct": true
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-20",
+        "text": "Sí: React inserta un span invisible.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-21",
+        "text": "Sí: convierten el Fragment en un div.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-22",
+        "text": "Solo en StrictMode.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-23",
+        "text": "Solo durante el SSR.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-las-fragment-refs-y-que-problemas-resuelven-a-24",
+        "text": "Sí, y hay que compensarlo con CSS.",
+        "is_correct": false
+      }
+    ]
+  }
+]

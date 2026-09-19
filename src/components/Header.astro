@@ -1,0 +1,750 @@
+---
+import ThemeToggle from './ThemeToggle.astro'
+import Stars from './Stars.astro'
+import Title from './Title.astro'
+import ReactLogo from './ReactLogo.astro'
+import counter from '../../public/content/counter.json'
+
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/'
+const isHome = pathname === '/'
+const total = counter.total
+---
+
+{
+  isHome ? (
+    <header class="relative mx-auto w-full max-w-6xl px-5 pb-10 pt-14 md:px-8 md:pt-16">
+      <nav
+        aria-label="Acciones del sitio"
+        class="site-actions absolute right-5 top-2 z-20 md:right-8"
+      >
+        <ThemeToggle />
+        <span class="site-actions-sep" aria-hidden="true"></span>
+        <Stars />
+        <span class="site-actions-sep" aria-hidden="true"></span>
+        <a href="/questions" class="site-action-btn site-action-btn--wide" data-read-counter>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="site-action-icon text-emerald-500 dark:text-emerald-400"
+            aria-hidden="true"
+          >
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+            <path d="M9 12l2 2l4 -4"></path>
+          </svg>
+          <span class="flex items-baseline gap-1">
+            <span class="mono-label text-[0.62rem]">
+              Leídas
+            </span>
+            <span
+              class="font-mono tabular-nums text-[0.78rem] text-[var(--fg)]"
+              aria-live="polite"
+            >
+              <span class="inline-block min-w-[3ch] text-right" data-read-count></span><span aria-hidden="true">/</span>{total}
+            </span>
+          </span>
+          <span class="sr-only">preguntas leídas de {total}</span>
+        </a>
+      </nav>
+
+      <div class="relative">
+        <div class="flex gap-x-2">
+          <Title isHome />
+          <div
+            class="absolute -right-4 top-6 hidden overflow-hidden p-2 lg:block md:right-0 dark:invert"
+            aria-hidden="true"
+          >
+            <div class="translate-x-1/3 sm:translate-x-0">
+              <ReactLogo animated />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form
+        class="search-shell mt-6"
+        role="search"
+        aria-label="Buscar preguntas sobre React"
+        data-search-form
+        data-open="false"
+        onsubmit="return false"
+      >
+        <div class="search-field">
+          <label for="search-input" class="sr-only">Buscar preguntas sobre React</label>
+          <span class="search-field-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 md:h-6 md:w-6">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M21 21l-4.3-4.3"></path>
+            </svg>
+          </span>
+          <input
+            id="search-input"
+            data-search-input
+            class="search-input"
+            type="search"
+            name="q"
+            placeholder="Busca una pregunta sobre React…"
+            autocomplete="off"
+            enterkeyhint="search"
+            spellcheck="false"
+            data-autofocus
+            role="combobox"
+            aria-autocomplete="list"
+            aria-controls="search-results"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-describedby="search-hint"
+          />
+          <button type="button" class="search-clear" data-search-clear data-visible="false" aria-label="Limpiar búsqueda" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+              <path d="M18 6L6 18"></path>
+              <path d="M6 6l12 12"></path>
+            </svg>
+          </button>
+          <p id="search-hint" class="sr-only">
+            Escribe al menos 2 caracteres. Usa flechas arriba y abajo para recorrer resultados y Enter para abrir la pregunta. El primer foco de la página es el enlace para saltar al contenido.
+          </p>
+        </div>
+        <div
+          class="search-panel animate-fade-in-up animate-duration-200 animate-ease-out"
+          data-search-panel
+          id="search-panel"
+        >
+          <ul id="search-results" data-search-results role="listbox" aria-label="Resultados de búsqueda" class="search-results"></ul>
+          <div class="search-footer" data-search-footer hidden>
+            <span class="search-footer-count" data-search-count></span>
+            <div class="search-footer-keys" aria-hidden="true">
+              <span><kbd class="search-kbd">↑</kbd><kbd class="search-kbd">↓</kbd> navegar</span>
+              <span><kbd class="search-kbd">↵</kbd> abrir</span>
+              <span><kbd class="search-kbd">esc</kbd> cerrar</span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </header>
+  ) : (
+    <header class="site-topbar sticky top-0 z-50 overflow-visible backdrop-blur-xl">
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-3 overflow-visible px-5 py-3 md:flex-row md:items-center md:gap-4 md:px-8 md:py-3.5">
+        <div class="flex items-center justify-between gap-3 md:contents">
+          <a
+            href="/"
+            class="group flex min-w-0 shrink-0 items-center gap-2.5 rounded-md outline-offset-4"
+          >
+            <span class="inline-flex h-7 w-7 items-center justify-center text-[var(--muted)] transition-colors group-hover:text-[var(--fg)]" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14" />
+                <path d="M5 12l6 6" />
+                <path d="M5 12l6 -6" />
+              </svg>
+            </span>
+            <span class="min-w-0">
+              <span class="mono-label block text-[10px]">
+                Volver al inicio
+              </span>
+              <span class="font-display block truncate text-sm font-semibold leading-tight text-[var(--fg)] md:text-base">
+                Preguntas de React
+              </span>
+            </span>
+          </a>
+
+          <nav
+            aria-label="Acciones del sitio"
+            class="site-actions shrink-0 md:order-3"
+          >
+            <ThemeToggle />
+            <span class="site-actions-sep" aria-hidden="true"></span>
+            <Stars />
+            <span class="site-actions-sep" aria-hidden="true"></span>
+            <a
+              href="/questions"
+              class="site-action-btn site-action-btn--wide"
+              data-read-counter
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="site-action-icon text-emerald-500 dark:text-emerald-400"
+                aria-hidden="true"
+              >
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                <path d="M9 12l2 2l4 -4"></path>
+              </svg>
+              <span class="flex items-baseline gap-1">
+                <span class="mono-label hidden text-[0.62rem] sm:inline">
+                  Leídas
+                </span>
+                <span
+                  class="font-mono tabular-nums text-[0.78rem] text-[var(--fg)]"
+                  aria-live="polite"
+                >
+                  <span class="inline-block min-w-[3ch] text-right" data-read-count></span><span aria-hidden="true">/</span
+                  >{total}
+                </span>
+              </span>
+              <span class="sr-only">preguntas leídas de {total}</span>
+            </a>
+          </nav>
+        </div>
+
+        <form
+          class="search-shell search-shell--compact w-full min-w-0 md:order-2 md:mx-auto md:w-72"
+          role="search"
+          aria-label="Buscar preguntas sobre React"
+          data-search-form
+          data-open="false"
+          onsubmit="return false"
+        >
+          <div class="search-field">
+            <label for="search-input" class="sr-only">Buscar preguntas sobre React</label>
+            <span class="search-field-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M21 21l-4.3-4.3"></path>
+              </svg>
+            </span>
+            <input
+              id="search-input"
+              data-search-input
+              class="search-input"
+              type="search"
+              name="q"
+              placeholder="Buscar pregunta…"
+              autocomplete="off"
+              enterkeyhint="search"
+              spellcheck="false"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-controls="search-results"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-describedby="search-hint"
+            />
+            <button type="button" class="search-clear" data-search-clear data-visible="false" aria-label="Limpiar búsqueda" tabindex="-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+                <path d="M18 6L6 18"></path>
+                <path d="M6 6l12 12"></path>
+              </svg>
+            </button>
+            <kbd class="search-shortcut" data-search-shortcut aria-hidden="true">
+              <span data-search-shortcut-mod>Ctrl</span>K
+            </kbd>
+            <p id="search-hint" class="sr-only">
+              Escribe al menos 2 caracteres. Usa flechas arriba y abajo para recorrer resultados y Enter para abrir la pregunta. Pulsa Control o Comando más K desde cualquier punto de la página para volver al buscador.
+            </p>
+          </div>
+          <div
+            class="search-panel animate-fade-in-up animate-duration-200 animate-ease-out"
+            data-search-panel
+          >
+            <ul id="search-results" data-search-results role="listbox" aria-label="Resultados de búsqueda" class="search-results"></ul>
+            <div class="search-footer" data-search-footer hidden>
+              <span class="search-footer-count" data-search-count></span>
+              <div class="search-footer-keys" aria-hidden="true">
+                <span><kbd class="search-kbd">↑</kbd><kbd class="search-kbd">↓</kbd> navegar</span>
+                <span><kbd class="search-kbd">↵</kbd> abrir</span>
+                <span><kbd class="search-kbd">esc</kbd> cerrar</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </header>
+  )
+}
+
+<script>
+  import type Fuse from 'fuse.js'
+  import debounce from 'just-debounce-it'
+
+  type IndexItem = { id: string; text: string; level?: number }
+  type Range = [number, number]
+
+  let fuse: Fuse<IndexItem> | null = null
+  let activeIndex = -1
+  let currentResults: Fuse.FuseResult<IndexItem>[] = []
+  let panelMode: 'closed' | 'results' | 'empty' = 'closed'
+
+  function announce(message: string) {
+    const el = document.getElementById('a11y-status')
+    if (!el) return
+    el.textContent = ''
+    requestAnimationFrame(() => {
+      el.textContent = message
+    })
+  }
+
+  async function ensureFuse() {
+    if (fuse) return fuse
+    // Load Fuse and the search index in parallel, only when the user searches
+    const [{ default: FuseCtor }, res] = await Promise.all([
+      import('fuse.js'),
+      fetch('/content/index.json'),
+    ])
+    const index: IndexItem[] = await res.json()
+    fuse = new FuseCtor(index, {
+      keys: ['text'],
+      includeScore: true,
+      includeMatches: true,
+      minMatchCharLength: 2,
+      threshold: 0.35,
+    })
+    return fuse
+  }
+
+  function getReadCount() {
+    try {
+      return JSON.parse(localStorage.getItem('read') || '[]').length
+    } catch {
+      return 0
+    }
+  }
+
+  function paintCounter() {
+    document.querySelectorAll('[data-read-count]').forEach(el => {
+      el.textContent = String(getReadCount())
+    })
+  }
+
+  function escapeHtml(text: string): string {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+  }
+
+  function mergeRanges(ranges: Range[]): Range[] {
+    if (!ranges.length) return []
+    const sorted = [...ranges].sort((a, b) => a[0] - b[0] || a[1] - b[1])
+    const merged: Range[] = [[sorted[0][0], sorted[0][1]]]
+    for (let i = 1; i < sorted.length; i++) {
+      const current = sorted[i]
+      const last = merged[merged.length - 1]
+      if (current[0] <= last[1] + 1) {
+        last[1] = Math.max(last[1], current[1])
+      } else {
+        merged.push([current[0], current[1]])
+      }
+    }
+    return merged
+  }
+
+  function getMatchRanges(matches?: readonly Fuse.FuseResultMatch[]): Range[] {
+    if (!matches?.length) return []
+    const ranges: Range[] = []
+    for (const match of matches) {
+      for (const [start, end] of match.indices) {
+        ranges.push([start, end])
+      }
+    }
+    return mergeRanges(ranges)
+  }
+
+  function buildHighlightMask(length: number, ranges: Range[]): boolean[] {
+    const mask = new Array(length).fill(false)
+    for (const [start, end] of ranges) {
+      for (let i = start; i <= end && i < length; i++) {
+        if (i >= 0) mask[i] = true
+      }
+    }
+    return mask
+  }
+
+  function highlightSlice(
+    value: string,
+    absoluteStart: number,
+    mask: boolean[]
+  ): string {
+    let html = ''
+    let open = false
+    for (let i = 0; i < value.length; i++) {
+      const on = mask[absoluteStart + i] === true
+      if (on && !open) {
+        html += '<mark class="search-mark">'
+        open = true
+      } else if (!on && open) {
+        html += '</mark>'
+        open = false
+      }
+      html += escapeHtml(value[i])
+    }
+    if (open) html += '</mark>'
+    return html
+  }
+
+  function highlightTitle(
+    text: string,
+    matches?: readonly Fuse.FuseResultMatch[]
+  ): string {
+    const mask = buildHighlightMask(text.length, getMatchRanges(matches))
+    const codeRe = /`([^`]+)`/g
+    let html = ''
+    let cursor = 0
+    let m: RegExpExecArray | null
+
+    while ((m = codeRe.exec(text))) {
+      if (m.index > cursor) {
+        html += highlightSlice(text.slice(cursor, m.index), cursor, mask)
+      }
+      const contentStart = m.index + 1
+      html += `<code>${highlightSlice(m[1], contentStart, mask)}</code>`
+      cursor = m.index + m[0].length
+    }
+
+    if (cursor < text.length) {
+      html += highlightSlice(text.slice(cursor), cursor, mask)
+    }
+
+    return html
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[\s(])_([^_]+)_([\s).,;:?!]|$)/g, '$1<em>$2</em>$3')
+  }
+
+  function getEls() {
+    return {
+      form: document.querySelector<HTMLElement>('[data-search-form]'),
+      input: document.querySelector<HTMLInputElement>('[data-search-input]'),
+      list: document.querySelector<HTMLElement>('[data-search-results]'),
+      panel: document.querySelector<HTMLElement>('[data-search-panel]'),
+      footer: document.querySelector<HTMLElement>('[data-search-footer]'),
+      count: document.querySelector<HTMLElement>('[data-search-count]'),
+      clear: document.querySelector<HTMLButtonElement>('[data-search-clear]'),
+    }
+  }
+
+  function setClearVisible(visible: boolean) {
+    const { clear } = getEls()
+    if (!clear) return
+    clear.dataset.visible = visible ? 'true' : 'false'
+    clear.tabIndex = visible ? 0 : -1
+  }
+
+  function setOpen(open: boolean) {
+    const { form, input } = getEls()
+    form?.setAttribute('data-open', open ? 'true' : 'false')
+    input?.setAttribute('aria-expanded', open ? 'true' : 'false')
+  }
+
+  function closePanel() {
+    const { list, footer, input } = getEls()
+    if (!list) return
+    currentResults = []
+    activeIndex = -1
+    panelMode = 'closed'
+    list.innerHTML = ''
+    footer?.setAttribute('hidden', '')
+    input?.removeAttribute('aria-activedescendant')
+    setOpen(false)
+  }
+
+  function renderEmpty(query: string) {
+    const { list, footer, count, input } = getEls()
+    if (!list || !input) return
+
+    currentResults = []
+    activeIndex = -1
+    panelMode = 'empty'
+    input.removeAttribute('aria-activedescendant')
+    setOpen(true)
+
+    const q = escapeHtml(query.trim())
+    list.innerHTML = `
+      <li class="search-empty" role="presentation">
+        <span class="search-empty-title">Sin resultados para “${q}”</span>
+        <span class="search-empty-hint">Prueba con un hook, concepto o palabra clave (p. ej. useState, props, SSR).</span>
+      </li>
+    `
+    if (footer && count) {
+      count.textContent = '0 resultados'
+      footer.removeAttribute('hidden')
+    }
+    announce('No se encontraron preguntas')
+  }
+
+  function renderResults(results: Fuse.FuseResult<IndexItem>[], query: string) {
+    const { list, footer, count, input } = getEls()
+    if (!list || !input) return
+
+    if (results.length === 0) {
+      if (query.trim().length >= 2) {
+        renderEmpty(query)
+      } else {
+        closePanel()
+      }
+      return
+    }
+
+    currentResults = results
+    panelMode = 'results'
+    setOpen(true)
+
+    list.innerHTML = results
+      .map((result, i) => {
+        const { item, matches } = result
+        const html = highlightTitle(item.text, matches)
+        const n = String(i + 1).padStart(2, '0')
+        return `
+          <li
+            class="search-option"
+            role="option"
+            id="search-option-${i}"
+            data-index="${i}"
+            aria-selected="false"
+          >
+            <a
+              href="/${item.id}"
+              class="search-option-link"
+              data-search-link
+              tabindex="-1"
+            >
+              <span class="search-option-index" aria-hidden="true">${n}</span>
+              <span class="search-option-text">${html}</span>
+              <span class="search-option-hint" aria-hidden="true">
+                <kbd class="search-kbd">↵</kbd>
+              </span>
+            </a>
+          </li>
+        `
+      })
+      .join('')
+
+    setActive(0)
+
+    if (footer && count) {
+      count.textContent =
+        results.length === 1 ? '1 resultado' : `${results.length} resultados`
+      footer.removeAttribute('hidden')
+    }
+
+    announce(
+      results.length === 1
+        ? '1 resultado encontrado'
+        : `${results.length} resultados encontrados`
+    )
+  }
+
+  function setActive(index: number) {
+    const { list, input } = getEls()
+    if (!list || panelMode !== 'results') return
+    const options = list.querySelectorAll<HTMLElement>('[role="option"]')
+    options.forEach((opt, i) => {
+      opt.setAttribute('aria-selected', i === index ? 'true' : 'false')
+    })
+    activeIndex = index
+    if (index >= 0) {
+      input?.setAttribute('aria-activedescendant', `search-option-${index}`)
+      options[index]?.scrollIntoView({ block: 'nearest' })
+    } else {
+      input?.removeAttribute('aria-activedescendant')
+    }
+  }
+
+  function goTo(id: string) {
+    window.location.assign(`/${id}`)
+  }
+
+  const runSearch = debounce(async (value: string) => {
+    const query = value.trim()
+    setClearVisible(value.length > 0)
+    if (query.length < 2) {
+      closePanel()
+      return
+    }
+    const f = await ensureFuse()
+    renderResults(f.search(query).slice(0, 6), query)
+  }, 160)
+
+  function initSearch() {
+    const { form, input, list, clear } = getEls()
+    if (!form || !input || !list) return
+    if (form.dataset.bound === '1') return
+    form.dataset.bound = '1'
+
+    const params = new URLSearchParams(window.location.search)
+    const q = params.get('q')
+    if (q) {
+      input.value = q
+      setClearVisible(q.length > 0)
+      runSearch(q)
+    }
+
+    // Home: focus the search field without blocking the skip link.
+    // Only steal focus if nothing interactive is focused yet.
+    if (input.hasAttribute('data-autofocus') && !q) {
+      requestAnimationFrame(() => {
+        const active = document.activeElement
+        const free =
+          !active ||
+          active === document.body ||
+          active === document.documentElement
+        if (free) {
+          input.focus({ preventScroll: true })
+        }
+      })
+    }
+
+    input.addEventListener('input', e => {
+      runSearch((e.target as HTMLInputElement).value)
+    })
+
+    clear?.addEventListener('click', () => {
+      input.value = ''
+      setClearVisible(false)
+      closePanel()
+      input.focus()
+      announce('Búsqueda limpiada')
+    })
+
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        if (panelMode !== 'closed') {
+          e.preventDefault()
+          closePanel()
+        } else if (input.value) {
+          e.preventDefault()
+          input.value = ''
+          setClearVisible(false)
+          closePanel()
+        } else {
+          input.blur()
+        }
+        return
+      }
+
+      if (panelMode !== 'results' || !currentResults.length) {
+        if (e.key === 'Enter' && currentResults.length === 1) {
+          e.preventDefault()
+          goTo(currentResults[0].item.id)
+        }
+        return
+      }
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        setActive(Math.min(activeIndex + 1, currentResults.length - 1))
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        setActive(activeIndex <= 0 ? 0 : activeIndex - 1)
+      } else if (e.key === 'Enter') {
+        e.preventDefault()
+        if (activeIndex >= 0) {
+          goTo(currentResults[activeIndex].item.id)
+        } else if (currentResults.length > 0) {
+          goTo(currentResults[0].item.id)
+        }
+      } else if (e.key === 'Home' && activeIndex >= 0) {
+        e.preventDefault()
+        setActive(0)
+      } else if (e.key === 'End' && activeIndex >= 0) {
+        e.preventDefault()
+        setActive(currentResults.length - 1)
+      }
+    })
+
+    list.addEventListener('mousemove', e => {
+      if (panelMode !== 'results') return
+      const li = (e.target as HTMLElement).closest<HTMLElement>('[data-index]')
+      if (li?.dataset.index != null) setActive(Number(li.dataset.index))
+    })
+
+    document.addEventListener('click', e => {
+      const target = e.target as Node
+      if (!form.contains(target)) closePanel()
+    })
+  }
+
+  function isTypingTarget(el: EventTarget | null) {
+    const node = el as HTMLElement | null
+    if (!node) return false
+    const tag = node.tagName
+    return (
+      tag === 'INPUT' ||
+      tag === 'TEXTAREA' ||
+      tag === 'SELECT' ||
+      node.isContentEditable
+    )
+  }
+
+  function onShortcut(e: KeyboardEvent) {
+    const isCmdK = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'
+    const isSlash = e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey
+
+    if (!isCmdK && !isSlash) return
+    // `/` is a legit character while typing; ⌘K should always reach the search
+    if (isSlash && isTypingTarget(document.activeElement)) return
+
+    const { input } = getEls()
+    if (!input) return
+
+    e.preventDefault()
+    input.focus({ preventScroll: true })
+    input.select()
+  }
+
+  function onStorage(e: Event) {
+    const detail = (e as CustomEvent).detail ?? e
+    const key = (detail as any).key
+    if (key === 'read' || (e as StorageEvent).key === 'read') paintCounter()
+  }
+
+  function paintShortcutBadge() {
+    const isApple = /mac|iphone|ipad|ipod/i.test(navigator.platform || navigator.userAgent)
+    document.querySelectorAll<HTMLElement>('[data-search-shortcut]').forEach(badge => {
+      const mod = badge.querySelector('[data-search-shortcut-mod]')
+      if (mod) mod.textContent = isApple ? '⌘' : 'Ctrl'
+      badge.dataset.ready = 'true'
+    })
+  }
+
+  let topbarObserver: ResizeObserver | null = null
+
+  // Publish the sticky topbar's height so other sticky elements can offset
+  // themselves under it. The home page has no topbar, so it stays at 0px.
+  function trackTopbarHeight() {
+    topbarObserver?.disconnect()
+    const topbar = document.querySelector<HTMLElement>('.site-topbar')
+
+    if (!topbar) {
+      document.documentElement.style.setProperty('--topbar-h', '0px')
+      return
+    }
+
+    const update = () => {
+      document.documentElement.style.setProperty(
+        '--topbar-h',
+        `${Math.round(topbar.getBoundingClientRect().height)}px`
+      )
+    }
+
+    update()
+    topbarObserver = new ResizeObserver(update)
+    topbarObserver.observe(topbar)
+  }
+
+  paintCounter()
+  paintShortcutBadge()
+  trackTopbarHeight()
+  initSearch()
+  window.addEventListener('storage', onStorage)
+  window.addEventListener('local-storage', onStorage)
+  document.addEventListener('keydown', onShortcut)
+  document.addEventListener('astro:page-load', () => {
+    paintCounter()
+    paintShortcutBadge()
+    trackTopbarHeight()
+    initSearch()
+  })
+</script>

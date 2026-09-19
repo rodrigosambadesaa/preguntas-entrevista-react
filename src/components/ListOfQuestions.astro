@@ -1,0 +1,150 @@
+---
+import { readIndex } from '../lib/posts'
+import { renderInlineMarkdown, stripMarkdown } from '../lib/markdown'
+import { LEVELS } from '../constants'
+import Pill from './Pill.astro'
+
+interface Props {
+  showReadStatus?: boolean
+}
+
+const { showReadStatus = false } = Astro.props
+
+const QUESTION_CATEGORIES = [
+  { id: 'beginner', level: LEVELS.EASY, label: 'Principiante' },
+  { id: 'intermediate', level: LEVELS.MEDIUM, label: 'Intermedio' },
+  { id: 'expert', level: LEVELS.HARD, label: 'Experto' },
+  { id: 'errors', level: LEVELS.ERRORS, label: 'Errores' },
+]
+
+const OTHER_CATEGORY = { id: 'other', label: 'Otras preguntas' }
+
+const questions = readIndex()
+const categoryByLevel = new Map(
+  QUESTION_CATEGORIES.map(c => [c.level, c.id])
+)
+const categories = new Map(
+  [...QUESTION_CATEGORIES, OTHER_CATEGORY].map(c => [
+    c.id,
+    { ...c, questions: [] as typeof questions },
+  ])
+)
+
+questions.forEach(question => {
+  const categoryId =
+    categoryByLevel.get(question.level as number) ?? OTHER_CATEGORY.id
+  categories.get(categoryId)!.questions.push(question)
+})
+
+const grouped = Array.from(categories.values()).filter(c => c.questions.length > 0)
+---
+
+<div class="space-y-8" data-questions-list>
+  {
+    grouped.map(category => {
+      const headingId = `category-${category.id}`
+      const countId = `count-${category.id}`
+      return (
+      <section aria-labelledby={headingId}>
+        <div class="questions-group-header mb-3 flex items-center justify-between gap-3">
+          {'level' in category && category.level !== undefined ? (
+            <div id={headingId}>
+              <Pill level={category.level} as="h3" />
+            </div>
+          ) : (
+            <h3
+              id={headingId}
+              class="font-display text-xl font-semibold text-[var(--fg)] md:text-2xl"
+            >
+              {category.label}
+            </h3>
+          )}
+          {/*
+            El texto accesible va como contenido real oculto, no como aria-label:
+            un <span> tiene rol implícito `generic`, donde aria-label está
+            prohibido y los lectores de pantalla pueden ignorarlo. Como este
+            elemento es el destino de un aria-describedby, necesita que la
+            descripción salga de su contenido para resolverse de forma fiable.
+          */}
+          <span id={countId} class="font-mono text-xs tabular-nums text-[var(--muted)]">
+            <span aria-hidden="true">{category.questions.length}</span>
+            <span class="sr-only">
+              {category.questions.length} preguntas en {category.label}
+            </span>
+          </span>
+        </div>
+
+        <ul class="questions-list" aria-describedby={countId}>
+          {category.questions.map(({ id, text }) => {
+            const textHtml = renderInlineMarkdown(text)
+            const plainText = stripMarkdown(text)
+            return (
+            <li>
+              {showReadStatus ? (
+                <a
+                  class="question-row rich-text leading-snug"
+                  href={`/${id}`}
+                  data-read-item
+                  data-read-title={text}
+                >
+                  <span class="status-dot" data-status-dot aria-hidden="true" />
+                  <span set:html={textHtml} />
+                  <span class="sr-only" data-read-status></span>
+                </a>
+              ) : (
+                <a
+                  class="question-row rich-text leading-snug"
+                  href={`/${id}`}
+                >
+                  <span set:html={textHtml} />
+                </a>
+              )}
+            </li>
+            )
+          })}
+        </ul>
+      </section>
+      )
+    })
+  }
+</div>
+
+{showReadStatus && (
+  <script>
+    function getRead(): string[] {
+      try {
+        return JSON.parse(localStorage.getItem('read') || '[]')
+      } catch {
+        return []
+      }
+    }
+
+    function paintReadItems() {
+      const read = getRead()
+      document.querySelectorAll<HTMLElement>('[data-read-item]').forEach(el => {
+        const title = el.dataset.readTitle || ''
+        const isRead = read.includes(title)
+        el.classList.toggle('question-row-read', isRead)
+        el.classList.toggle('text-green-700', isRead)
+        el.classList.toggle('dark:text-green-300', isRead)
+        const dot = el.querySelector('[data-status-dot]')
+        dot?.classList.toggle('status-dot-read', isRead)
+        const status = el.querySelector('[data-read-status]')
+        if (status) {
+          status.textContent = isRead ? ' (leída)' : ' (no leída)'
+        }
+      })
+    }
+
+    function onStorage(e: Event) {
+      const detail = (e as CustomEvent).detail ?? e
+      const key = (detail as any).key
+      if (key === 'read' || (e as StorageEvent).key === 'read') paintReadItems()
+    }
+
+    paintReadItems()
+    window.addEventListener('storage', onStorage)
+    window.addEventListener('local-storage', onStorage)
+    document.addEventListener('astro:page-load', paintReadItems)
+  </script>
+)}

@@ -1,0 +1,150 @@
+[
+  {
+    "id": "para-que-sirve-add-transition-type-q-1",
+    "question_id": "para-que-sirve-add-transition-type",
+    "question": "¿Qué problema resuelve addTransitionType?",
+    "alternatives": [
+      {
+        "id": "para-que-sirve-add-transition-type-a-1",
+        "text": "Animar de forma distinta el mismo setState según la causa (por ejemplo, adelante o atrás).",
+        "is_correct": true
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-2",
+        "text": "Crear un nuevo tipo de hook.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-3",
+        "text": "Sustituir a useTransition.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-4",
+        "text": "Forzar un re-render síncrono.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-5",
+        "text": "Validar props de ViewTransition.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-6",
+        "text": "Cancelar todas las animaciones CSS.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "para-que-sirve-add-transition-type-q-2",
+    "question_id": "para-que-sirve-add-transition-type",
+    "question": "¿Dónde se debe llamar addTransitionType?",
+    "alternatives": [
+      {
+        "id": "para-que-sirve-add-transition-type-a-7",
+        "text": "Dentro de startTransition, junto a la actualización de estado.",
+        "is_correct": true
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-8",
+        "text": "En el cuerpo del render, en cada pintado.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-9",
+        "text": "Solo dentro de useEffect.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-10",
+        "text": "En el constructor de un class component.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-11",
+        "text": "Como hijo de Suspense.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-12",
+        "text": "En el archivo CSS, no en JavaScript.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "para-que-sirve-add-transition-type-q-3",
+    "question_id": "para-que-sirve-add-transition-type",
+    "question": "¿Cómo consume ViewTransition esos tipos?",
+    "alternatives": [
+      {
+        "id": "para-que-sirve-add-transition-type-a-13",
+        "text": "Mapeando enter/exit a clases CSS por tipo, p. ej. enter={{ next: 'from-right' }}.",
+        "is_correct": true
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-14",
+        "text": "Los ignora: solo sirve para analytics.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-15",
+        "text": "Los convierte en keys de lista.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-16",
+        "text": "Los envía al servidor como FormData.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-17",
+        "text": "Solo funcionan con styled-components.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-18",
+        "text": "Sustituyen a la prop key.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "para-que-sirve-add-transition-type-q-4",
+    "question_id": "para-que-sirve-add-transition-type",
+    "question": "Además del mapeo en JSX, ¿qué otra integración tienen los tipos?",
+    "alternatives": [
+      {
+        "id": "para-que-sirve-add-transition-type-a-19",
+        "text": "Se registran como view transition types del navegador y se pueden usar con :active-view-transition-type(...).",
+        "is_correct": true
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-20",
+        "text": "Se guardan en localStorage automáticamente.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-21",
+        "text": "Crean un Context global.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-22",
+        "text": "Activan el React Compiler.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-23",
+        "text": "Solo existen en desarrollo.",
+        "is_correct": false
+      },
+      {
+        "id": "para-que-sirve-add-transition-type-a-24",
+        "text": "Reemplazan a las media queries.",
+        "is_correct": false
+      }
+    ]
+  }
+]

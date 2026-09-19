@@ -1,0 +1,48 @@
+---
+import Pill from './Pill.astro'
+import { renderInlineMarkdown, stripMarkdown } from '../lib/markdown'
+
+interface Props {
+  title: string
+  excerpt: string
+  slug: string
+  level: number
+  rank?: number
+}
+
+const { title, excerpt, slug, level, rank } = Astro.props
+const plainTitle = stripMarkdown(title)
+const titleId = `card-title-${slug.replace(/[^a-z0-9-]/gi, '')}`
+const excerptId = `card-excerpt-${slug.replace(/[^a-z0-9-]/gi, '')}`
+---
+
+<a
+  class="question-card"
+  href={slug}
+  aria-labelledby={titleId}
+  aria-describedby={excerptId}
+>
+  {
+    rank != null && (
+      <span class="question-card-rank" aria-hidden="true">
+        {String(rank).padStart(2, '0')}
+      </span>
+    )
+  }
+  <span class="flex min-w-0 flex-1 flex-col">
+    <span class="flex min-w-0 items-baseline justify-between gap-3">
+      <span
+        id={titleId}
+        class="question-card-title rich-text"
+        title={plainTitle}
+        set:html={renderInlineMarkdown(title)}
+      />
+      <span class="shrink-0">
+        <Pill level={level} as="span" />
+      </span>
+    </span>
+    <span id={excerptId} class="question-card-excerpt">
+      {excerpt}
+    </span>
+  </span>
+</a>

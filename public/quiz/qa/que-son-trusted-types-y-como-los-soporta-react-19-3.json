@@ -1,0 +1,150 @@
+[
+  {
+    "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-q-1",
+    "question_id": "que-son-trusted-types-y-como-los-soporta-react-19-3",
+    "question": "¿Qué problema de seguridad atacan Trusted Types?",
+    "alternatives": [
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-1",
+        "text": "XSS basado en DOM: exigen objetos tipados en sinks como innerHTML.",
+        "is_correct": true
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-2",
+        "text": "CSRF en formularios GET.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-3",
+        "text": "Fugas de memoria por closures.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-4",
+        "text": "Clickjacking en iframes.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-5",
+        "text": "Race conditions en useEffect.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-6",
+        "text": "El mismatch de hidratación.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-q-2",
+    "question_id": "que-son-trusted-types-y-como-los-soporta-react-19-3",
+    "question": "¿Qué hacía React antes con un TrustedHTML y por qué fallaba?",
+    "alternatives": [
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-7",
+        "text": "Lo coercía a string ('' + value) y el navegador rechazaba el string crudo.",
+        "is_correct": true
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-8",
+        "text": "Lo sanitizaba dos veces y lo vaciaba.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-9",
+        "text": "Lo convertía en un Portal.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-10",
+        "text": "Lo ignoraba y no pintaba nada.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-11",
+        "text": "Lo serializaba a JSON.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-12",
+        "text": "Lo guardaba en Context.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-q-3",
+    "question_id": "que-son-trusted-types-y-como-los-soporta-react-19-3",
+    "question": "¿Qué cambia en React 19.3?",
+    "alternatives": [
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-13",
+        "text": "Pasa los objetos Trusted Types al DOM sin coercionarlos a string.",
+        "is_correct": true
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-14",
+        "text": "React sanitiza todo el HTML por ti.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-15",
+        "text": "Se elimina dangerouslySetInnerHTML.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-16",
+        "text": "innerHTML queda prohibido incluso con política.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-17",
+        "text": "CSP ya no es necesario.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-18",
+        "text": "Solo funciona en Internet Explorer.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-q-4",
+    "question_id": "que-son-trusted-types-y-como-los-soporta-react-19-3",
+    "question": "Con Trusted Types, ¿quién sigue siendo responsable de sanitizar?",
+    "alternatives": [
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-19",
+        "text": "Tú, con tus políticas. React solo deja de destruir el tipo.",
+        "is_correct": true
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-20",
+        "text": "React, de forma automática en cada render.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-21",
+        "text": "El bundler, al minificar.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-22",
+        "text": "PropTypes.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-23",
+        "text": "useEffect.",
+        "is_correct": false
+      },
+      {
+        "id": "que-son-trusted-types-y-como-los-soporta-react-19-3-a-24",
+        "text": "Nadie: el navegador acepta cualquier string.",
+        "is_correct": false
+      }
+    ]
+  }
+]

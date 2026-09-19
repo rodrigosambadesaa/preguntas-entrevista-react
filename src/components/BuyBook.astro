@@ -1,0 +1,91 @@
+---
+import BookCover from './BookCover.astro'
+---
+
+<aside class="buy-book" aria-label="Promoción del libro">
+  <a
+    href="https://leanpub.com/react-preguntas-tipicas"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="buy-book-link"
+    aria-label="Comprar el libro de preguntas típicas de React en Leanpub (se abre en una pestaña nueva)"
+  >
+    <BookCover width={120} height={156} rotate={22} rotateHover={6}>
+      {/*
+        El libro está en `position: fixed`, así que siempre entra en el viewport
+        inicial: `loading="lazy"` retrasaba la petición hasta calcular el layout
+        sin ahorrar nada. `eager` + prioridad baja lo pide pronto pero sin
+        competir con el LCP.
+
+        El preload de AVIF vive en BaseLayout; lleva el mismo `type`, así que
+        los navegadores sin AVIF lo ignoran y caen al webp sin doble descarga.
+      */}
+      <picture>
+        <source srcset="/book.avif" type="image/avif" />
+        <img
+          alt="Portada del libro «Preguntas típicas de React» de Miguel Ángel Durán"
+          src="/book.webp"
+          width="120"
+          height="156"
+          loading="eager"
+          fetchpriority="low"
+          decoding="async"
+        />
+      </picture>
+    </BookCover>
+    <span class="buy-book-cta" aria-hidden="true">Comprar libro</span>
+  </a>
+</aside>
+
+<style>
+  .buy-book {
+    position: fixed;
+    right: 1.15rem;
+    bottom: 1.15rem;
+    z-index: 30;
+  }
+
+  .buy-book-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .buy-book-link:hover {
+    transform: translateY(-3px);
+  }
+
+  .buy-book-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 0.375rem;
+  }
+
+  .buy-book-cta {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 140ms ease;
+  }
+
+  .buy-book-link:hover .buy-book-cta {
+    color: var(--fg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .buy-book-link {
+      transition: none;
+    }
+
+    .buy-book-link:hover {
+      transform: none;
+    }
+  }
+</style>

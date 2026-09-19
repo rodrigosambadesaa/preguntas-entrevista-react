@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="Página no encontrada"
+  description="La pregunta que buscas no existe en React.js Wiki. Vuelve al inicio para encontrar preguntas reales sobre React."
+  canonical="/404"
+  noindex={true}
+>
+  <section
+    class="animate-fade-in-up animate-duration-700 py-16 text-center md:py-24"
+    aria-labelledby="not-found-heading"
+  >
+    <div class="relative mx-auto max-w-2xl">
+      <p class="mono-label mb-4 text-[var(--level-errors)]">Error 404</p>
+      <h1
+        id="not-found-heading"
+        class="font-display text-4xl font-semibold leading-tight text-[var(--fg)] md:text-6xl"
+      >
+        Esta pregunta no existe
+      </h1>
+      <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[var(--muted)]">
+        La URL no coincide con ninguna pregunta publicada. Puedes volver al
+        inicio y usar el buscador para encontrar contenido real sobre React.
+      </p>
+      <a class="home-intro-btn home-intro-btn-primary mt-8" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l14 0"/><path d="M5 12l6 6"/><path d="M5 12l6 -6"/></svg>
+        Volver al inicio
+      </a>
+    </div>
+  </section>
+</BaseLayout>

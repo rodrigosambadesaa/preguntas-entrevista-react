@@ -1,0 +1,150 @@
+[
+  {
+    "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-q-1",
+    "question_id": "que-cambia-en-las-transitions-independientes-de-react-19-3",
+    "question": "¿Cómo se planificaban las Transitions antes de React 19.3?",
+    "alternatives": [
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-1",
+        "text": "Se entrelazaban en un único render: una Transition lenta retenía a las demás.",
+        "is_correct": true
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-2",
+        "text": "Cada una usaba un Web Worker distinto.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-3",
+        "text": "Se ejecutaban en el servidor.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-4",
+        "text": "No existían las Transitions.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-5",
+        "text": "Siempre eran síncronas con flushSync.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-6",
+        "text": "Solo había una Transition por aplicación.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-q-2",
+    "question_id": "que-cambia-en-las-transitions-independientes-de-react-19-3",
+    "question": "¿Qué cambia en React 19.3?",
+    "alternatives": [
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-7",
+        "text": "Cada Transition se renderiza por su cuenta y una lenta ya no bloquea a otra.",
+        "is_correct": true
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-8",
+        "text": "startTransition queda deprecado.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-9",
+        "text": "Todas las actualizaciones pasan a ser urgentes.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-10",
+        "text": "useTransition ahora es síncrono.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-11",
+        "text": "Hay que marcar a mano la prioridad con un número.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-12",
+        "text": "Las Transitions solo funcionan con ViewTransition.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-q-3",
+    "question_id": "que-cambia-en-las-transitions-independientes-de-react-19-3",
+    "question": "¿Cambia el modelo mental de startTransition?",
+    "alternatives": [
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-13",
+        "text": "No: sigue marcando trabajo no urgente. Cambia la planificación, no la API.",
+        "is_correct": true
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-14",
+        "text": "Sí: ahora startTransition es obligatorio en todo setState.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-15",
+        "text": "Sí: hay que pasar un id único a cada Transition.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-16",
+        "text": "Sí: sustituye a useDeferredValue.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-17",
+        "text": "Sí: ya no existe isPending.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-18",
+        "text": "Sí: solo se puede tener una Transition activa.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-q-4",
+    "question_id": "que-cambia-en-las-transitions-independientes-de-react-19-3",
+    "question": "En la práctica, ¿qué ejemplo ilustra la mejora?",
+    "alternatives": [
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-19",
+        "text": "Cambiar de pestaña no tiene que esperar a que termine un filtrado lento anterior.",
+        "is_correct": true
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-20",
+        "text": "useState deja de ser asíncrono.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-21",
+        "text": "Los Server Components ya no necesitan await.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-22",
+        "text": "Las listas ya no necesitan key.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-23",
+        "text": "El Virtual DOM desaparece.",
+        "is_correct": false
+      },
+      {
+        "id": "que-cambia-en-las-transitions-independientes-de-react-19-3-a-24",
+        "text": "Suspense deja de mostrar fallbacks.",
+        "is_correct": false
+      }
+    ]
+  }
+]

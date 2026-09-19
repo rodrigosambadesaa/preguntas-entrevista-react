@@ -13,7 +13,7 @@ const LEVELS = {
 const MAP_LEVELS = {
   principiante: LEVELS.EASY,
   intermedio: LEVELS.MEDIUM,
-  avanzado: LEVELS.HARD,
+  experto: LEVELS.HARD,
   'errores típicos en react': LEVELS.ERRORS,
 }
 
@@ -58,6 +58,7 @@ const tree = marked.lexer(cleaned)
 
 let previousId = null
 let previousTitle = ''
+let previousLevel = undefined
 const index = []
 let levelLiteral = 'principiante'
 let stack = []
@@ -83,7 +84,7 @@ const promises = tree
       let id
       let level
 
-      if (!isLast) {
+      if (isHeading) {
         id = slugify(text)
         level = MAP_LEVELS[levelLiteral]
         index.push({ id, text, level })
@@ -95,6 +96,7 @@ const promises = tree
       if (previousId === null) {
         previousId = id
         previousTitle = text
+        previousLevel = level
       }
 
       if (previousId !== id || isLast) {
@@ -105,9 +107,9 @@ const promises = tree
           .replace('</h4', '</h1')
           .replace('<hr>', '')
 
-        const promise = fs.outputJSON(`./public/${previousId}.json`, {
+        const promise = fs.outputJSON(`./public/content/${previousId}.json`, {
           id: previousId,
-          level,
+          level: previousLevel,
           title: previousTitle,
           content,
         })
@@ -115,6 +117,7 @@ const promises = tree
         stack = []
         previousId = id
         previousTitle = text
+        previousLevel = level
 
         return promise
       }

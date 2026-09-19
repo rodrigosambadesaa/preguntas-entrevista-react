@@ -1,0 +1,144 @@
+---
+interface Props {
+  title: string
+  /** Mark as read automatically when the page loads (default true). */
+  autoMark?: boolean
+}
+const { title, autoMark = true } = Astro.props
+---
+
+<button
+  type="button"
+  data-read-button
+  data-title={title}
+  data-auto-mark={autoMark ? 'true' : 'false'}
+  data-read-ready="false"
+  aria-pressed="false"
+  class="pill-tag inline-flex cursor-pointer items-center gap-1 bg-[var(--surface)] text-[var(--muted)] transition-colors hover:text-[var(--fg)]"
+>
+  <span class="read-icon" aria-hidden="true">
+    <svg data-icon-unread xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M14 12c0 .5 0 .5 -.5 .5h-3c-.5 0 -.5 0 -.5 -.5s0 -.5 .5 -.5h3c.5 0 .5 0 .5 .5"/><path d="M12 9v6"/></svg>
+    <svg data-icon-read xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M9 12l2 2l4 -4"/></svg>
+  </span>
+  <span class="read-label-text" data-read-label></span>
+</button>
+
+<style>
+  /* Stack both icons in one grid cell so swapping them doesn't collapse the box */
+  .read-icon {
+    display: inline-grid;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .read-icon > * {
+    grid-area: 1 / 1;
+  }
+
+  /* Nothing is shown until the client resolves the stored state */
+  [data-read-ready='false'] [data-icon-read],
+  [data-read-ready='false'] [data-icon-unread],
+  [data-read-ready='false'] .read-label-text {
+    visibility: hidden;
+  }
+
+  [data-read-ready='true'][aria-pressed='true'] [data-icon-unread],
+  [data-read-ready='true'][aria-pressed='false'] [data-icon-read] {
+    visibility: hidden;
+  }
+</style>
+
+<script>
+  function getRead(): string[] {
+    try {
+      const raw = localStorage.getItem('read')
+      if (!raw) return []
+      const parsed = JSON.parse(raw)
+      return Array.isArray(parsed) ? parsed.filter(x => typeof x === 'string') : []
+    } catch {
+      return []
+    }
+  }
+
+  function setRead(list: string[]) {
+    const newValue = JSON.stringify(list)
+    localStorage.setItem('read', newValue)
+    window.dispatchEvent(
+      new CustomEvent('local-storage', { detail: { key: 'read', newValue } })
+    )
+  }
+
+  function markAsRead(title: string) {
+    if (!title) return false
+    const list = getRead()
+    if (list.includes(title)) return false
+    list.push(title)
+    setRead(list)
+    return true
+  }
+
+  function toggleRead(title: string) {
+    if (!title) return
+    const list = getRead()
+    const idx = list.indexOf(title)
+    if (idx >= 0) list.splice(idx, 1)
+    else list.push(title)
+    setRead(list)
+  }
+
+  function paintButton(btn: HTMLElement) {
+    const title = btn.dataset.title || ''
+    const isRead = getRead().includes(title)
+    const label = btn.querySelector('[data-read-label]')
+
+    if (label) label.textContent = isRead ? 'Leído' : 'Marcar leído'
+    // Icon visibility is driven by aria-pressed + data-read-ready in CSS
+    btn.setAttribute('aria-pressed', isRead ? 'true' : 'false')
+    btn.dataset.readReady = 'true'
+    btn.setAttribute(
+      'aria-label',
+      isRead ? 'Marcar como no leído' : 'Marcar como leído'
+    )
+
+    btn.classList.toggle('border-blue-500/40', isRead)
+    btn.classList.toggle('bg-blue-50', isRead)
+    btn.classList.toggle('text-blue-700', isRead)
+    btn.classList.toggle('dark:bg-blue-500/15', isRead)
+    btn.classList.toggle('dark:text-blue-300', isRead)
+  }
+
+  function initReadButtons() {
+    document.querySelectorAll<HTMLElement>('[data-read-button]').forEach(btn => {
+      const title = btn.dataset.title || ''
+      const shouldAuto = btn.dataset.autoMark === 'true'
+
+      // Mark as read when landing on the article (once per visit setup)
+      if (shouldAuto && title && btn.dataset.autoMarked !== '1') {
+        btn.dataset.autoMarked = '1'
+        markAsRead(title)
+      }
+
+      paintButton(btn)
+
+      if (btn.dataset.bound === '1') return
+      btn.dataset.bound = '1'
+      btn.addEventListener('click', () => {
+        toggleRead(btn.dataset.title || '')
+        paintButton(btn)
+      })
+    })
+  }
+
+  function onStorage(e: Event) {
+    const detail = (e as CustomEvent).detail ?? e
+    const key = (detail as any).key
+    if (key === 'read' || (e as StorageEvent).key === 'read') {
+      document.querySelectorAll<HTMLElement>('[data-read-button]').forEach(paintButton)
+    }
+  }
+
+  initReadButtons()
+  window.addEventListener('storage', onStorage)
+  window.addEventListener('local-storage', onStorage)
+  document.addEventListener('astro:page-load', initReadButtons)
+</script>

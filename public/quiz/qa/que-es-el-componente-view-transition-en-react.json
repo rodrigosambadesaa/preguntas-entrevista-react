@@ -1,0 +1,150 @@
+[
+  {
+    "id": "que-es-el-componente-view-transition-en-react-q-1",
+    "question_id": "que-es-el-componente-view-transition-en-react",
+    "question": "¿Qué anima el componente ViewTransition?",
+    "alternatives": [
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-1",
+        "text": "Entrada, salida, movimiento o cambio de tamaño usando la View Transition API del navegador.",
+        "is_correct": true
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-2",
+        "text": "Solo transiciones de color en CSS.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-3",
+        "text": "El ciclo de vida de los class components.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-4",
+        "text": "Las peticiones fetch del servidor.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-5",
+        "text": "El orden de los hooks.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-6",
+        "text": "La hidratación de todo el documento.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-es-el-componente-view-transition-en-react-q-2",
+    "question_id": "que-es-el-componente-view-transition-en-react",
+    "question": "¿Cuándo dispara animación un ViewTransition?",
+    "alternatives": [
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-7",
+        "text": "Cuando el cambio va marcado como Transition: startTransition, Suspense o useDeferredValue.",
+        "is_correct": true
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-8",
+        "text": "En cualquier setState, aunque sea urgente.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-9",
+        "text": "Solo al montar la aplicación.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-10",
+        "text": "Únicamente en React Native.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-11",
+        "text": "Solo si usas useEffect.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-12",
+        "text": "Nunca: hay que animar a mano con requestAnimationFrame.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-es-el-componente-view-transition-en-react-q-3",
+    "question_id": "que-es-el-componente-view-transition-en-react",
+    "question": "¿Qué tipos de animación reconoce ViewTransition?",
+    "alternatives": [
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-13",
+        "text": "enter, exit, update y share.",
+        "is_correct": true
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-14",
+        "text": "mount, update y unmount solamente.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-15",
+        "text": "fade y slide únicamente.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-16",
+        "text": "sync y async.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-17",
+        "text": "server y client.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-18",
+        "text": "layout y paint.",
+        "is_correct": false
+      }
+    ]
+  },
+  {
+    "id": "que-es-el-componente-view-transition-en-react-q-4",
+    "question_id": "que-es-el-componente-view-transition-en-react",
+    "question": "Al animar Suspense, ¿qué patrón recomienda React para no ralentizar UI cacheada?",
+    "alternatives": [
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-19",
+        "text": "Animar solo el update: update='auto' y default='none'.",
+        "is_correct": true
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-20",
+        "text": "Animar siempre enter y exit, también si ya está en caché.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-21",
+        "text": "Quitar el fallback de Suspense.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-22",
+        "text": "Usar flushSync alrededor del fallback.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-23",
+        "text": "Envolver cada hook en ViewTransition.",
+        "is_correct": false
+      },
+      {
+        "id": "que-es-el-componente-view-transition-en-react-a-24",
+        "text": "Desactivar Concurrent React.",
+        "is_correct": false
+      }
+    ]
+  }
+]

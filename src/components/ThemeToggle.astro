@@ -1,0 +1,98 @@
+<button
+  type="button"
+  id="theme-toggle"
+  aria-label="Activar tema oscuro"
+  aria-pressed="false"
+  class="site-action-btn"
+  data-theme-toggle
+>
+  <!-- Shown in light mode: switch to dark -->
+  <svg
+    data-theme-icon="moon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="site-action-icon text-slate-600 dark:hidden"
+    aria-hidden="true"
+  >
+    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+    ></path>
+  </svg>
+  <!-- Shown in dark mode: switch to light -->
+  <svg
+    data-theme-icon="sun"
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="site-action-icon hidden text-amber-300 dark:block"
+    aria-hidden="true"
+  >
+    <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+    <path
+      d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
+    ></path>
+  </svg>
+</button>
+
+<script>
+  function syncThemeButton(btn: HTMLElement) {
+    const isDark = document.documentElement.classList.contains('dark')
+    btn.setAttribute('aria-pressed', isDark ? 'true' : 'false')
+    btn.setAttribute(
+      'aria-label',
+      isDark ? 'Activar tema claro' : 'Activar tema oscuro'
+    )
+  }
+
+  function initThemeToggle() {
+    document.querySelectorAll<HTMLElement>('[data-theme-toggle]').forEach(btn => {
+      syncThemeButton(btn)
+      if (btn.dataset.bound === '1') return
+      btn.dataset.bound = '1'
+
+      const apply = (theme: string) => {
+        const root = document.documentElement
+        const dark = theme === 'dark'
+        root.classList.toggle('dark', dark)
+        root.dataset.theme = dark ? 'dark' : 'light'
+        root.style.colorScheme = dark ? 'dark' : 'light'
+        root.style.setProperty('--page-bg', dark ? '#0f0f12' : '#ffffff')
+        root.style.setProperty('--page-fg', dark ? '#ededed' : '#171717')
+        try {
+          localStorage.setItem('theme', theme)
+        } catch {}
+        document
+          .querySelectorAll<HTMLElement>('[data-theme-toggle]')
+          .forEach(syncThemeButton)
+        const status = document.getElementById('a11y-status')
+        if (status) {
+          status.textContent = ''
+          requestAnimationFrame(() => {
+            status.textContent =
+              theme === 'dark' ? 'Tema oscuro activado' : 'Tema claro activado'
+          })
+        }
+      }
+
+      btn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark')
+        apply(isDark ? 'light' : 'dark')
+      })
+    })
+  }
+
+  initThemeToggle()
+  document.addEventListener('astro:page-load', initThemeToggle)
+</script>
